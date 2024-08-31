@@ -1,6 +1,6 @@
 FROM debian
 
-RUN apt-get update --yes && apt-get upgrade --yes && apt-get install git gcc g++ libgmp-dev libmpfr-dev texinfo --yes
+RUN apt-get update --yes && apt-get upgrade --yes && apt-get install git gcc g++ libgmp-dev libmpfr-dev texinfo --yes && apt-get install --yes --reinstall make
 
 RUN export PREFIX="$HOME/opt/cross" && \
 	export TARGET=sh4-elf && \
