@@ -12,7 +12,7 @@ RUN curl "https://sourceware.org/pub/binutils/snapshots/binutils-2.42.90.tar.xz"
 	cd build && \
 	../configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror && \
 	make && \
-	sudo make install && \
+	make install && \
 	cd ../../
 
 RUN git clone git://gcc.gnu.org/git/gcc.git && \
@@ -23,8 +23,8 @@ RUN git clone git://gcc.gnu.org/git/gcc.git && \
 	../configure --target=$TARGET --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers --with-multilib-list=m4-nofpu && \
 	make all-gcc && \
 	make all-target-libgcc && \
-	sudo make install-gcc && \
-	sudo make install-target-libgcc && \
+	make install-gcc && \
+	make install-target-libgcc && \
 	cd ../../
     
 RUN git clone https://github.com/snailMath/hollyhock-2 && \
@@ -33,13 +33,15 @@ RUN git clone https://github.com/snailMath/hollyhock-2 && \
 	cd ../../
 
 RUN export PREFIX="/hollyhock-2/sdk/newlib" && \
-	export TARGET="sh4-elf" && \
-	git clone https://github.com/diddyholz/newlib-cp2/tree/1a177610d8e181d09206a5a8ce2d873822751657 && \
-	cd newlib-cp2 && \
-	mkdir build && \
-	cd build && \
-	../configure --target=$TARGET --prefix=$PREFIX && \
-	make all && \
+	export PREFIX="$SDK_DIR/newlib" && \
+ 	export TARGET="sh-elf" && \
+  	export TARGET_BINS="sh4-elf" && \
+	git clone https://sourceware.org/git/?p=newlib-cygwin.git;a=commit;h=26f7004bf73c421c3fd5e5a6ccf470d05337b435 && \
+	cd newlib-cygwin && \
+	mkdir build-newlib
+	cd build-newlib
+	../newlib-VERSION/configure --target=$TARGET --prefix=$PREFIX CC_FOR_TARGET=${TARGET_BINS}-gcc AS_FOR_TARGET=${TARGET_BINS}-as LD_FOR_TARGET=${TARGET_BINS}-ld AR_FOR_TARGET=${TARGET_BINS}-ar RANLIB_FOR_TARGET=${TARGET_BINS}-ranlib
+	make all
 	make install
 
 ENV SDK_DIR=/hollyhock-2/sdk
