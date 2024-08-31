@@ -5,8 +5,7 @@ RUN apt-get update --yes && apt-get upgrade --yes && apt-get install git gcc g++
 RUN export PREFIX="$HOME/opt/cross" && \
 	export TARGET=sh4-elf && \
  	export PATH="$PREFIX/bin:$PATH"
-RUN curl "https://sourceware.org/pub/binutils/snapshots/binutils-2.42.90.tar.xz" -O && \
-	tar -xf binutils-2.42.90.tar.xz && \
+RUN curl "https://sourceware.org/pub/binutils/snapshots/binutils-2.42.90.tar.xz" -O && tar -xf binutils-2.42.90.tar.xz && \
    	cd binutils-2.42.90 && \
 	mkdir build && \
 	cd build && \
@@ -15,8 +14,8 @@ RUN curl "https://sourceware.org/pub/binutils/snapshots/binutils-2.42.90.tar.xz"
 	make install && \
 	cd ../../
 
-RUN git clone git://gcc.gnu.org/git/gcc.git && \
-	cd gcc && \
+RUN curl "https://mirrors.middlendian.com/gnu/gcc/gcc-14.2.0/gcc-14.2.0.tar.xz" -O && tar -xf gcc-14.2.0.tar.xz && \
+	cd gcc-14.2.0 && \
 	contrib/download_prerequisites && \
 	mkdir build && \
 	cd build && \
@@ -27,7 +26,7 @@ RUN git clone git://gcc.gnu.org/git/gcc.git && \
 	make install-target-libgcc && \
 	cd ../../
     
-RUN git clone https://github.com/snailMath/hollyhock-2 && \
+RUN curl "https://github.com/SnailMath/hollyhock-2/archive/refs/heads/master.zip" -o hollyhock-2.zip && tar -xf hollyhock-2.zip && \
 	cd hollyhock-2/sdk && \
 	make && \
 	cd ../../
@@ -38,7 +37,7 @@ RUN export PREFIX="/hollyhock-2/sdk/newlib" && \
 	export PREFIX="$SDK_DIR/newlib" && \
  	export TARGET="sh-elf" && \
   	export TARGET_BINS="sh4-elf" && \
-	git clone https://sourceware.org/git/?p=newlib-cygwin.git;a=commit;h=26f7004bf73c421c3fd5e5a6ccf470d05337b435 && \
+	curl "ftp://sourceware.org/pub/newlib/newlib-4.4.0.20231231.tar.gz" -o newlib-cygwin.tar.gz && tar -xf newlib-cygwin.tar.gz && \
 	cd newlib-cygwin && \
 	mkdir build-newlib && \
 	cd build-newlib && \
