@@ -5,7 +5,7 @@ RUN apt-get update --yes && apt-get upgrade --yes && apt-get install git gcc g++
 RUN export PREFIX="$HOME/opt/cross" && \
 	export TARGET=sh4-elf && \
  	export PATH="$PREFIX/bin:$PATH"
-RUN curl -L "https://sourceware.org/pub/binutils/snapshots/binutils-2.42.90.tar.xz" > bintuils.tar.xz && \
+RUN curl -L "https://sourceware.org/pub/binutils/snapshots/binutils-2.42.90.tar.xz" > binutils.tar.xz && \
 	tar -xf binutils.tar.xz && \
    	cd binutils && \
 	mkdir build && \
