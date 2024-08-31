@@ -1,4 +1,4 @@
-FROM debian:bullseye-latest
+FROM debian-latest
 
 #RUN apt-get install git --yes
 
