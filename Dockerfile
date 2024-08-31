@@ -37,7 +37,7 @@ RUN export PREFIX="/hollyhock-2/sdk/newlib" && \
 	export PREFIX="$SDK_DIR/newlib" && \
  	export TARGET="sh-elf" && \
   	export TARGET_BINS="sh4-elf" && \
-	curl "ftp://sourceware.org/pub/newlib/newlib-4.4.0.20231231.tar.gz" -o newlib-cygwin.tar.gz && tar -xf newlib-cygwin.tar.gz && \
+	curl "ftp://sourceware.org/pub/newlib/newlib-4.2.0.20211231.tar.gz" -o newlib-cygwin.tar.gz && tar -xf newlib-cygwin.tar.gz && \
 	cd newlib-cygwin && \
 	mkdir build-newlib && \
 	cd build-newlib && \
