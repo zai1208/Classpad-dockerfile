@@ -1,6 +1,6 @@
-FROM debian:latest
+FROM debian
 
-#RUN apt-get install git --yes
+RUN apt-get update --yes && apt-get upgrade --yes && install git --yes
 
 RUN export PREFIX="$HOME/opt/cross" && \
 	export TARGET=sh4-elf && \
