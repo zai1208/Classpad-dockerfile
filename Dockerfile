@@ -5,8 +5,9 @@ RUN apt-get update --yes && apt-get upgrade --yes && apt-get install git gcc g++
 RUN export PREFIX="$HOME/opt/cross" && \
 	export TARGET=sh4-elf && \
  	export PATH="$PREFIX/bin:$PATH"
-RUN git clone git://sourceware.org/git/binutils-gdb.git && \
-   	cd binutils-gdb && \
+RUN curl https://sourceware.org/pub/binutils/snapshots/binutils-2.42.90.tar.xz && \
+	tar -xz binutils-2.42.90.tar.xz && \
+   	cd binutils-2.42.90 && \
 	mkdir build && \
 	cd build && \
 	../configure --target=$TARGET --prefix="$PREFIX" --with-sysroot --disable-nls --disable-werror && \
