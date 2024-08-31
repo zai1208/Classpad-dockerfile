@@ -1,6 +1,6 @@
-FROM debian
+FROM debian:bullseye-latest
 
-RUN apt-get install git --yes
+#RUN apt-get install git --yes
 
 RUN export PREFIX="$HOME/opt/cross" && \
 	export TARGET=sh4-elf && \
