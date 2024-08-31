@@ -5,7 +5,7 @@ RUN apt-get update --yes && apt-get upgrade --yes && apt-get install git gcc g++
 RUN export PREFIX="$HOME/opt/cross" && \
 	export TARGET=sh4-elf && \
  	export PATH="$PREFIX/bin:$PATH" && \
-  	git clone --depth 1 git://sourceware.org/git/binutils-gdb.git && \
+  	git clone git://sourceware.org/git/binutils-gdb.git && \
    	cd binutils-gdb && \
 	mkdir build && \
 	cd build && \
