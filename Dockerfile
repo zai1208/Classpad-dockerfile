@@ -6,7 +6,7 @@ RUN export PREFIX="$HOME/opt/cross" && \
 	export TARGET=sh4-elf && \
  	export PATH="$PREFIX/bin:$PATH"
 RUN curl -L "https://sourceware.org/pub/binutils/snapshots/binutils-2.42.90.tar.xz" > bintuils.tar.xz && \
-	tar -xz binutils.tar.xz && \
+	tar -xf binutils.tar.xz && \
    	cd binutils && \
 	mkdir build && \
 	cd build && \
@@ -34,7 +34,7 @@ RUN git clone https://github.com/snailMath/hollyhock-2 && \
 
 RUN export PREFIX="/hollyhock-2/sdk/newlib" && \
 	export TARGET="sh4-elf" && \
-	git clone https://github.com/diddyholz/newlib-cp2 && \
+	git clone https://github.com/diddyholz/newlib-cp2/tree/1a177610d8e181d09206a5a8ce2d873822751657 && \
 	cd newlib-cp2 && \
 	mkdir build && \
 	cd build && \
