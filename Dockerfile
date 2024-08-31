@@ -21,7 +21,7 @@ RUN git clone git://gcc.gnu.org/git/gcc.git \
 	make all-gcc \
 	make all-target-libgcc \
 	sudo make install-gcc \
-	sudo make install-target-libgcc
+	sudo make install-target-libgcc \
 	cd ../../
     
 RUN git clone https://github.com/snailMath/hollyhock-2 \
