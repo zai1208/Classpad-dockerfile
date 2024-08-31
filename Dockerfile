@@ -31,6 +31,8 @@ RUN git clone https://github.com/snailMath/hollyhock-2 && \
 	cd hollyhock-2/sdk && \
 	make && \
 	cd ../../
+ 
+ENV SDK_DIR=/hollyhock-2/sdk
 
 RUN export PREFIX="/hollyhock-2/sdk/newlib" && \
 	export PREFIX="$SDK_DIR/newlib" && \
@@ -38,10 +40,10 @@ RUN export PREFIX="/hollyhock-2/sdk/newlib" && \
   	export TARGET_BINS="sh4-elf" && \
 	git clone https://sourceware.org/git/?p=newlib-cygwin.git;a=commit;h=26f7004bf73c421c3fd5e5a6ccf470d05337b435 && \
 	cd newlib-cygwin && \
-	mkdir build-newlib
-	cd build-newlib
-	../newlib-VERSION/configure --target=$TARGET --prefix=$PREFIX CC_FOR_TARGET=${TARGET_BINS}-gcc AS_FOR_TARGET=${TARGET_BINS}-as LD_FOR_TARGET=${TARGET_BINS}-ld AR_FOR_TARGET=${TARGET_BINS}-ar RANLIB_FOR_TARGET=${TARGET_BINS}-ranlib
-	make all
+	mkdir build-newlib && \
+	cd build-newlib && \
+	../newlib-VERSION/configure --target=$TARGET --prefix=$PREFIX CC_FOR_TARGET=${TARGET_BINS}-gcc AS_FOR_TARGET=${TARGET_BINS}-as LD_FOR_TARGET=${TARGET_BINS}-ld AR_FOR_TARGET=${TARGET_BINS}-ar RANLIB_FOR_TARGET=${TARGET_BINS}-ranlib && \
+	make all && \
 	make install
 
-ENV SDK_DIR=/hollyhock-2/sdk
+RUN echo "export SDK_DIR=${SDK_DIR}" >> ~/.bashrc
