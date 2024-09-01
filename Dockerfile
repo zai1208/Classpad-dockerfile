@@ -14,8 +14,8 @@ RUN curl "https://sourceware.org/pub/binutils/snapshots/binutils-2.42.90.tar.xz"
 	make install && \
 	cd ../../
 
-RUN curl "https://mirrors.middlendian.com/gnu/gcc/gcc-14.2.0/gcc-14.2.0.tar.xz" -O && tar -xf gcc-14.2.0.tar.xz && \
-	cd gcc-14.2.0 && \
+RUN curl "https://mirrors.middlendian.com/gnu/gcc/gcc-10.2.0/gcc-10.2.0.tar.xz" -O && tar -xf gcc-10.2.0.tar.xz && \
+	cd gcc-10.2.0 && \
 	contrib/download_prerequisites && \
 	mkdir build && \
 	cd build && \
