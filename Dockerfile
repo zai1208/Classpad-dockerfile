@@ -19,7 +19,7 @@ RUN curl "https://mirrors.middlendian.com/gnu/gcc/gcc-14.2.0/gcc-14.2.0.tar.xz" 
 	contrib/download_prerequisites && \
 	mkdir build && \
 	cd build && \
-	../configure --target=$TARGET --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers --with-multilib-list=m4-nofpu && \
+	../configure --target=$TARGET --prefix="$PREFIX" --disable-nls --enable-languages=c,c++ --without-headers --with-multilib-list=m4-nofpu --disable-multilib && \
 	make all-gcc && \
 	make all-target-libgcc && \
 	make install-gcc && \
