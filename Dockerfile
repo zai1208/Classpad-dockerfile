@@ -1,6 +1,6 @@
 FROM debian
 
-RUN apt-get update --yes && apt-get upgrade --yes && apt-get install git gcc g++ gcc-multilib build-essential libgmp-dev libmpfr-dev texinfo make curl xz-utils bzip2 libc6 libstdc++6 zstd zlib1g-dev binutils --yes
+RUN apt-get update --yes && apt-get upgrade --yes && apt-get install git gcc g++ gcc-multilib g++-multilib build-essential libgmp-dev libmpfr-dev texinfo make curl xz-utils bzip2 libc6 libstdc++6 zstd zlib1g-dev binutils --yes
 
 RUN export PREFIX="$HOME/opt/cross" && \
 	export TARGET=sh4-elf && \
